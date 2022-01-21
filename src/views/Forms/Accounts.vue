@@ -153,9 +153,10 @@ export default {
          }
 
          arry.forEach((res) => {
+            console.log(res)
             phonenumber = res.phonenumbers
             urls = res.urls
-
+            console.log(urls)
             this.urls.websiteUrls = urls.websiteUrls
             this.urls.WebsiteProvider = urls.WebsiteProvider
             this.urls.facebookURL = urls.facebookURL
@@ -187,7 +188,9 @@ export default {
          if (this.submitForm.websiteUrls && this.submitForm.WebsiteProvider) {
             setTimeout(() => {
                axios.post('accounts.json', { urls: this.urls, phonenumbers: this.phoneNumber }).then((res) => {
-                  if (!res.data.ok) {
+
+
+                  if (!res.status === 200) {
                      this.isLoading = false
                      return
                   }
@@ -204,19 +207,19 @@ export default {
 
          }
 
-         this.urls = {
-            websiteUrls: '',
-            WebsiteProvider: '',
-            facebookURL: '',
-            twitterUrl: '',
-            instagramUrl: '',
-            youtubeUrl: ''
-         },
-            this.phoneNumber = {
-               usaNumber1: '',
-               usaNumber2: ''
+         // this.urls = {
+         //    websiteUrls: '',
+         //    WebsiteProvider: '',
+         //    facebookURL: '',
+         //    twitterUrl: '',
+         //    instagramUrl: '',
+         //    youtubeUrl: ''
+         // },
+         //    this.phoneNumber = {
+         //       usaNumber1: '',
+         //       usaNumber2: ''
 
-            }
+         //    }
 
          // console.log(this.urls, this.phoneNumber)
       },
